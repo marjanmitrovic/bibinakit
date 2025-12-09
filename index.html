@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bibi nakit – Ručno rađen nakit od poludragog kamenja</title>
+  <meta name="description" content="Ručno rađen nakit od poludragog kamenja – ogrlice, narukvice, minđuše. Svaki komad je jedinstven, rađen s ljubavlju." />
+
+  <!-- Google font (opciono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #b87a5b;      /* boja kamena / zlata */
+      --primary-dark: #9c6044;
+      --bg: #f9f5f2;
+      --text: #333333;
+      --muted: #666666;
+      --light: #ffffff;
+      --accent: #d1b89a;
+      --shadow-soft: 0 10px 25px rgba(0,0,0,0.06);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --transition: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(249,245,242,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 0;
+    }
+    .nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+
+    .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.logo-img {
+  height: 140px;        /* po potrebi promeni  */
+  width: auto;
+  display: block;
+}
+
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      gap: 0.4rem;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary-dark);
+      border: 1px solid var(--primary);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Hero */
+
+    .hero {
+      padding: 3rem 0 2.5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(184,122,91,0.06);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--primary-dark);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: var(--primary-dark);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 32rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span strong {
+      color: var(--primary-dark);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #ffffff 0, #f4ebe4 40%, #f9f5f2 100%);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.8);
+      font-size: 0.8rem;
+      color: var(--primary-dark);
+    }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .hero-img-placeholder {
+      height: 230px;
+      background: linear-gradient(135deg, #c9a58a, #e3cbb1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .hero-small-note {
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Sections */
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin: 0.2rem auto 1.8rem;
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      padding: 0.6rem 0.9rem;
+      background: #fff;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      box-shadow: var(--shadow-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .about-photo {
+      border-radius: var(--radius-xl);
+      background: #fff;
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-photo-inner {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .about-placeholder {
+      height: 220px;
+      background: linear-gradient(135deg,#ead1bf,#c9a58a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Products */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+      gap: 1.4rem;
+    }
+    .products-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 160px;
+}
+
+.filter-group label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.products-filters select {
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  background: #faf7f4;
+  outline: none;
+  font-family: inherit;
+}
+
+.products-filters select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px rgba(184,122,91,0.3);
+  background: #fff;
+}
+
+@media (max-width: 700px) {
+  .products-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+    .product-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.1);
+    }
+
+    .product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      max-height: 230px;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-tag {
+      position: absolute;
+      left: 0.7rem;
+      top: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 0.75rem;
+    }
+
+    .product-body {
+      padding: 0.9rem 1rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-top: 0.2rem;
+    }
+
+    .product-price {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .product-sku {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .product-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .btn-small {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    /* How to order */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .step-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1rem 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Testimonials */
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-name {
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    .testimonial-city {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,0.9fr);
+      gap: 2rem;
+    }
+
+    form {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 1.4rem 1.5rem;
+    }
+
+    .form-row {
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border var(--transition), box-shadow var(--transition);
+      background: #faf7f4;
+    }
+
+    textarea {
+      border-radius: 14px;
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(184,122,91,0.3);
+      background: #fff;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-info p {
+      margin-bottom: 0.6rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-highlight {
+      display: inline-block;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-badge {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    footer {
+      border-top: 1px solid rgba(0,0,0,0.04);
+      padding: 1.2rem 0 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      .hero {
+        padding-top: 2rem;
+      }
+    }
+
+  @media (max-width: 700px) {
+  .container {
+    padding: 0 1.1rem;
+  }
+
+  .nav {
+    padding: 0.8rem 0;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: rgba(249,245,242,0.98);
+    flex-direction: column;
+    padding: 0.7rem 1.1rem 1rem;
+    gap: 0.6rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: none; /* podrazumevano sakriveno */
+  }
+
+  body.nav-open .nav-links {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 0.35rem 0;
+  }
+
+  .hero {
+    padding-top: 1.4rem;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-inner {
+    gap: 1.8rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  section {
+    padding: 1.8rem 0;
+  }
+
+  .products-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#top" class="logo">
+      <img src="images/logo-bibi-dark.png" alt="Bibi nakit – ručno rađen nakit od poludragog kamenja" class="logo-img">
+    </a>
+
+    <button class="nav-toggle" aria-label="Otvori meni">
+      ☰
+    </button>
+
+    <nav class="nav-links">
+      <a href="#kolekcija">Kolekcija</a>
+      <a href="#o-meni">O meni</a>
+      <a href="#kako-poruciti">Kako poručiti</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Ručno rađen nakit od poludragog kamenja
+        </div>
+        <h1 class="hero-title">
+          Jedinstveni komadi <span>nakita</span> za svaki dan i posebne trenutke.
+        </h1>
+        <p class="hero-subtitle">
+          Svaka ogrlica, narukvica i par minđuša nastaje ručno, od pažljivo odabranih poludragih
+          kamenja. Limitirane serije – baš kao i vi.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kolekcija" class="btn">
+            Pogledaj kolekciju
+          </a>
+          <a href="#kontakt" class="btn btn-secondary">
+            Poruči preko Viber / WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span><strong>Besplatna isporuka</strong> za porudžbine preko 4.000 RSD</span>
+          <span>Ručno rađeno u Srbiji</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-tag">Nova kolekcija – proleće / leto</div>
+        <div class="hero-img-wrap">
+          <!-- OVDE UBACI PRAVU SLIKU NAKITA -->
+          <!-- <img src="images/hero-nakit.jpg" alt="Ručno rađen nakit Bibi nakit" /> -->
+          <div class="hero-img-placeholder">
+            Ovde ubaci fotografiju svojih najlepših komada nakita (horizontalna fotografija).
+          </div>
+        </div>
+        <p class="hero-small-note">
+          Svaki komad može se prilagoditi – dužina, vrsta kopče, kombinacija kamenja.
+          Napišite mi poruku i dogovorićemo se.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- O meni -->
+  <section id="o-meni">
+    <div class="container">
+      <h2 class="section-title">Priča iza Bibi nakita</h2>
+      <p class="section-subtitle">
+        Verujem da nakit nije samo ukras. To je mala lična amajlija koju nosimo uz sebe –
+        zato svaki komad pravim polako, pažljivo i sa namerom.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Zovem se <strong>Bibi</strong> i nakit ručno izrađujem u maloj radionici u Srbiji.
+            Radim isključivo sa <strong>poludragim kamenjem, prirodnim perlama i kvalitetnim metalnim
+            komponentama</strong> koje biram od proverenih dobavljača.
+          </p>
+          <p>
+            Svaka narukvica, ogrlica ili par minđuša nastaje u malim serijama ili kao jedinstven
+            komad. Ako želite nešto potpuno lično – rado ću dizajnirati nakit po vašoj meri,
+            bilo da je to poklon dragoj osobi ili amajlija za vas.
+          </p>
+
+          <div class="about-features">
+            <div class="chip"><span class="chip-dot"></span> Prirodno poludrago kamenje</div>
+            <div class="chip"><span class="chip-dot"></span> Ručna izrada, svaki komad poseban</div>
+            <div class="chip"><span class="chip-dot"></span> Mogućnost personalizacije</div>
+            <div class="chip"><span class="chip-dot"></span> Idealan poklon za posebne prilike</div>
+          </div>
+        </div>
+
+        <div class="about-photo">
+          <div class="about-photo-inner">
+            <!-- OVDE MOŽE TVOJA SLIKA U RADIONICI ILI DETALJ RADA -->
+            <div class="about-placeholder">
+              Ovde može da stoji fotografija tebe u radionici ili detalj ruku dok praviš nakit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kolekcija -->
+  <section id="kolekcija">
+    <div class="container">
+      <h2 class="section-title">Kolekcija nakita</h2>
+      <p class="section-subtitle">
+        Ovo je mali deo onoga što trenutno imam u ponudi. Svaki komad je ručno rađen,
+        u ograničenom broju. Klikom na „Poruči“ možete da mi pošaljete poruku sa šifrom modela.
+      </p>
+<div class="products-filters">
+  <div class="filter-group">
+    <label for="filter-type">Tip nakita</label>
+    <select id="filter-type">
+      <option value="">Svi tipovi</option>
+      <!-- Ostale opcije puni JavaScript -->
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="filter-stone">Poludragi kamen</label>
+    <select id="filter-stone">
+      <option value="">Svi kameni</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="filter-price">Cena</label>
+    <select id="filter-price">
+      <option value="">Sve cene</option>
+      <option value="1">Do 2.000 RSD</option>
+      <option value="2">2.001 – 3.000 RSD</option>
+      <option value="3">Preko 3.000 RSD</option>
+    </select>
+  </div>
+</div>
+
+      <div id="products-grid" class="products-grid">
+  <!-- Proizvodi će se učitati automatski iz products.json pomoću JavaScript-a -->
+  <p style="font-size:0.9rem; color:#aaa;">
+    Učitavanje proizvoda...
+  </p>
+</div>
+
+            <div class="product-actions">
+              <a class="btn btn-small" href="https://wa.me/38161355564?text=Zdravo%2C%20zanima%20me%20model%20NK-01%20Narukvica%20ljubavi.">
+                Poruči preko WhatsApp
+              </a>
+           
+            <a class="btn btn-small btn-secondary" 
+   href="https://viber.me/381611355564">
+  Poruči preko Viber
+</a>
+
+
+
+            </div>
+          </div>
+        </article>
+
+        <!-- Proizvod 2 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <!-- <img src="images/proizvod2.jpg" alt="Ogrlica od ametista" /> -->
+            <div class="hero-img-placeholder" style="height: 200px; font-size:0.95rem;">
+              Slika – ogrlica od ametista (primer)
+            </div>
+            <span class="product-tag">Ametist</span>
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Ogrlica intuicije</h3>
+            <p class="product-desc">
+              Elegantna ogrlica od ametista, sa diskretnom metalnom kopčom. 
+              Diskretno stoji uz kožu i lepo se kombinuje i uz svakodnevne i svečane kombinacije.
+            </p>
+            <div class="product-meta">
+              <span class="product-price">3.400 RSD</span>
+              <span class="product-sku">Šifra: OG-05</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-small" href="https://wa.me/381601234567?text=Zdravo%2C%20zanima%20me%20model%20OG-05%20Ogrlica%20intuicije.">
+                Poruči preko WhatsApp
+              </a>
+              <a class="btn btn-small btn-secondary" href="viber://chat?number=+381601234567">
+                Poruči preko Viber
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proizvod 3 -->
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <!-- <img src="images/proizvod3.jpg" alt="Minđuše od mesečevog kamena" /> -->
+            <div class="hero-img-placeholder" style="height: 200px; font-size:0.95rem;">
+              Slika – minđuše od mesečevog kamena (primer)
+            </div>
+            <span class="product-tag">Mesečev kamen</span>
+          </div>
+          <div class="product-body">
+            <h3 class="product-title">Mesečeve kapi</h3>
+            <p class="product-desc">
+              Lagane minđuše od mesečevog kamena koje prelepo hvataju svetlost.
+              Idealne za dame koje vole suptilan, ali primećljiv nakit.
+            </p>
+            <div class="product-meta">
+              <span class="product-price">2.800 RSD</span>
+              <span class="product-sku">Šifra: MD-03</span>
+            </div>
+            <div class="product-actions">
+              <a class="btn btn-small" href="https://wa.me/381601234567?text=Zdravo%2C%20zanima%20me%20model%20MD-03%20Meseceve%20kapi.">
+                Poruči preko WhatsApp
+              </a>
+              <a class="btn btn-small btn-secondary" href="viber://chat?number=+381601234567">
+                Poruči preko Viber
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Dodaj još proizvoda po istom šablonu -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Kako poručiti -->
+  <section id="kako-poruciti">
+    <div class="container">
+      <h2 class="section-title">Kako poručiti nakit</h2>
+      <p class="section-subtitle">
+        Poručivanje je jednostavno – samo odaberite model i javite mi se porukom.
+        Ako želite personalizaciju (druga dužina, kamen, boja) napišite sve što vam je važno.
+      </p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <strong>Odaberite model</strong>
+          <p>
+            U delu „Kolekcija“ pronađite komad nakita koji vam se dopada.
+            Zapišite <strong>šifru modela</strong> (npr. NK-01, OG-05...).
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <strong>Pošaljite poruku</strong>
+          <p>
+            Pošaljite mi poruku preko <strong>Viber-a, WhatsApp-a ili Instagrama</strong>
+            sa šifrom modela i kratkim opisom želje (boja, dužina, količina).
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <strong>Dogovor i izrada</strong>
+          <p>
+            Odgovaram vam sa potvrdom, rokom izrade i cenom dostave.
+            Nakon dogovora, izrađujem vaš komad i šaljem ga na adresu.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Utisci kupaca -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Šta kažu kupci</h2>
+      <p class="section-subtitle">
+        Najlepši deo ovog posla su poruke koje dobijem kada nakit stigne na pravu adresu.
+        Ovde su neki od utisaka kupaca.
+      </p>
+
+      <div class="testimonials">
+        <article class="testimonial-card">
+          <p>
+            „Narukvica od rozenkvarca je uživo još lepša nego na slici. Ne skidam je već nedelju dana!
+            Prelepo upakovana, kao poklon samoj sebi.“
+          </p>
+          <div class="testimonial-name">Ana</div>
+          <div class="testimonial-city">Beograd</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p>
+            „Poručila sam ogrlicu za sestrin rođendan, Bibi mi je pomogla da odaberem kamen
+            i sve stiglo tačno na vreme. Sestra je oduševljena.“
+          </p>
+          <div class="testimonial-name">Maja</div>
+          <div class="testimonial-city">Novi Sad</div>
+        </article>
+
+        <article class="testimonial-card">
+          <p>
+            „Hvala na strpljenju oko moje narudžbine. Trebalo mi je nešto posebno za maturu
+            i dobila sam baš ono što sam zamišljala.“
+          </p>
+          <div class="testimonial-name">Milica</div>
+          <div class="testimonial-city">Niš</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt">
+    <div class="container">
+      <h2 class="section-title">Kontakt i porudžbine</h2>
+      <p class="section-subtitle">
+        Ako imate pitanje, želite da poručite nakit ili da osmislimo poseban komad samo za vas,
+        slobodno mi pišite. Odgovaram u najkraćem roku.
+      </p>
+
+      <div class="contact-grid">
+        <form action="mailto:primer@email.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <label for="ime">Ime i prezime</label>
+            <input type="text" id="ime" name="Ime" placeholder="Vaše ime" required>
+          </div>
+          <div class="form-row">
+            <label for="email">Email (opciono)</label>
+            <input type="email" id="email" name="Email" placeholder="vas@email.com">
+          </div>
+          <div class="form-row">
+            <label for="poruka">Poruka</label>
+            <textarea id="poruka" name="Poruka" placeholder="Šifra modela, želje za personalizaciju, grad za dostavu..." required></textarea>
+          </div>
+          <button type="submit" class="btn">Pošalji poruku</button>
+        </form>
+
+        <div class="contact-info">
+          <p><strong>Direktan kontakt:</strong></p>
+          <ul class="contact-list">
+            <li>Telefon / Viber: <strong>+381 61 135 55 64</strong></li>
+            <li>WhatsApp: <strong>+381 61 135 55 64</strong></li>
+            <li>Email: <strong>bibi.nakit@example.com</strong></li>
+          </ul>
+
+          <span class="contact-highlight">
+            Najbrži odgovor dobijate preko Viber ili WhatsApp poruke.
+          </span>
+
+          <p style="margin-top:1rem;"><strong>Društvene mreže:</strong></p>
+          <div class="social-links">
+            <a href="#" class="social-badge">Instagram @bibi_nakit</a>
+            <a href="#" class="social-badge">Facebook Bibi nakit</a>
+            <a href="#" class="social-badge">TikTok @bibi_nakit</a>
+          </div>
+
+          <p style="margin-top:1rem; font-size:0.85rem;">
+            Dostava kurirskom službom širom Srbije. Cena dostave zavisi od kurirske službe.
+            Mogućnost ličnog preuzimanja po dogovoru u vašem gradu (ako je primenljivo).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> Bibi nakit – ručna izrada nakita od poludragog kamenja. Sva prava zadržana.
+  </div>
+</footer>
+<script>
+  const PHONE_NUMBER = "381611355564"; // bez plusa
+
+  const productsGrid = document.getElementById("products-grid");
+  const filterType = document.getElementById("filter-type");
+  const filterStone = document.getElementById("filter-stone");
+  const filterPrice = document.getElementById("filter-price");
+
+  let allProducts = [];
+
+  function createProductCard(product) {
+    const waText = `Zdravo, zanima me model ${product.id} - ${product.name}.`;
+    const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(waText)}`;
+    const viberLink = `https://viber.me/${PHONE_NUMBER}`;
+
+    const imageSrc = product.image && product.image.trim() !== ""
+      ? product.image
+      : "images/products/placeholder.jpg";
+
+    const availableBadge = product.available === false
+      ? `<span class="product-tag" style="background: rgba(0,0,0,0.75);">Rasprodato</span>`
+      : `<span class="product-tag">${product.stone || ""}</span>`;
+
+    const disabledAttr = product.available === false ? 'style="pointer-events:none;opacity:0.6;"' : "";
+
+    const card = document.createElement("article");
+    card.className = "product-card";
+    card.innerHTML = `
+      <div class="product-image-wrap">
+        <img src="${imageSrc}" alt="${product.name}">
+        ${availableBadge}
+      </div>
+      <div class="product-body">
+        <h3 class="product-title">${product.name}</h3>
+        <p class="product-desc">
+          ${product.description || ""}
+        </p>
+        <div class="product-meta">
+          <span class="product-price">${product.price} ${product.currency || "RSD"}</span>
+          <span class="product-sku">Šifra: ${product.id}</span>
+        </div>
+        <div class="product-actions" ${product.available === false ? 'style="opacity:0.5;"' : ''}>
+          <a class="btn btn-small" href="${waLink}" ${disabledAttr}>
+            Poruči preko WhatsApp
+          </a>
+          <a class="btn btn-small btn-secondary" href="${viberLink}" ${disabledAttr}>
+            Poruči preko Viber
+          </a>
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  function renderProducts(products) {
+    productsGrid.innerHTML = "";
+    if (!products || products.length === 0) {
+      productsGrid.innerHTML = "<p>Trenutno nema proizvoda za odabrane filtere.</p>";
+      return;
+    }
+    products.forEach(product => {
+      const card = createProductCard(product);
+      productsGrid.appendChild(card);
+    });
+  }
+
+  function applyFilters() {
+    let filtered = [...allProducts];
+
+    const typeValue = filterType.value;
+    const stoneValue = filterStone.value;
+    const priceValue = filterPrice.value;
+
+    if (typeValue) {
+      filtered = filtered.filter(p => p.type === typeValue);
+    }
+
+    if (stoneValue) {
+      filtered = filtered.filter(p => p.stone === stoneValue);
+    }
+
+    if (priceValue === "1") {
+      filtered = filtered.filter(p => p.price <= 2000);
+    } else if (priceValue === "2") {
+      filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
+    } else if (priceValue === "3") {
+      filtered = filtered.filter(p => p.price > 3000);
+    }
+
+    renderProducts(filtered);
+  }
+
+  function populateFilterOptions(products) {
+    const types = new Set();
+    const stones = new Set();
+
+    products.forEach(p => {
+      if (p.type) types.add(p.type);
+      if (p.stone) stones.add(p.stone);
+    });
+
+    types.forEach(type => {
+      const opt = document.createElement("option");
+      opt.value = type;
+      // lepo ime tipa
+      let label = "";
+      if (type === "narukvica") label = "Narukvice";
+      else if (type === "ogrlica") label = "Ogrlice";
+      else if (type === "mindjuse") label = "Minđuše";
+      else if (type === "set") label = "Setovi";
+      else label = type;
+
+      opt.textContent = label;
+      filterType.appendChild(opt);
+    });
+
+    stones.forEach(stone => {
+      const opt = document.createElement("option");
+      opt.value = stone;
+      opt.textContent = stone;
+      filterStone.appendChild(opt);
+    });
+  }
+
+  // Učitavanje proizvoda
+  fetch("products.json")
+    .then(response => {
+      if (!response.ok) throw new Error("Ne mogu da učitam products.json");
+      return response.json();
+    })
+    .then(products => {
+      allProducts = products || [];
+      productsGrid.innerHTML = "";
+      populateFilterOptions(allProducts);
+      renderProducts(allProducts);
+
+      filterType.addEventListener("change", applyFilters);
+      filterStone.addEventListener("change", applyFilters);
+      filterPrice.addEventListener("change", applyFilters);
+    })
+    .catch(err => {
+      console.error(err);
+      productsGrid.innerHTML = "<p>Došlo je do greške pri učitavanju proizvoda.</p>";
+    });
+</script>
+<script>
+  const navToggle = document.querySelector(".nav-toggle");
+  const body = document.body;
+
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      body.classList.toggle("nav-open");
+    });
+  }
+
+  // zatvori meni kad klikneš na neki link (na mobilnom)
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      body.classList.remove("nav-open");
+    });
+  });
+</script>
+
+
+<script>
+  // dinamička godina u footeru
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
