@@ -4,76 +4,32 @@
     "name": "Narukvica ljubavi",
     "type": "narukvica",
     "stone": "Rozenkvarc",
-    "description": "Ručna narukvica od rozenkvarca sa diskretnim metalnim elementima.",
     "price": 2200,
     "currency": "RSD",
+    "available": true,
     "image": "images/products/narukvica-rozenkvarc.jpg",
-    "available": true
-  },
-  {
-    "id": "NK-02",
-    "name": "Zaštitna narukvica",
-    "type": "narukvica",
-    "stone": "Lava kamen",
-    "description": "Narukvica od crnog lava kamena sa metalnim detaljem.",
-    "price": 1900,
-    "currency": "RSD",
-    "image": "images/products/narukvica-lava.jpg",
-    "available": true
-  },
-  {
-    "id": "OG-01",
-    "name": "Kristalna kap",
-    "type": "ogrlica",
-    "stone": "Gorski kristal",
-    "description": "Minimalistička ogrlica sa privjeskom od gorskog kristala.",
-    "price": 3200,
-    "currency": "RSD",
-    "image": "images/products/ogrlica-kristal.jpg",
-    "available": true
+    "description": "Ručna narukvica od rozenkvarca sa diskretnom metalnom kopčom. Veruje se da rozenkvarc donosi nežnost, toplinu i otvara srce za ljubav."
   },
   {
     "id": "OG-05",
     "name": "Ogrlica intuicije",
     "type": "ogrlica",
     "stone": "Ametist",
-    "description": "Elegantna ogrlica od ametista, za svakodnevnu i svečanu kombinaciju.",
     "price": 3400,
     "currency": "RSD",
+    "available": true,
     "image": "images/products/ogrlica-ametist.jpg",
-    "available": true
+    "description": "Elegantna ogrlica od ametista, idealna za one koji veruju u snagu intuicije i unutrašnjeg mira. Lepo se uklapa i uz svakodnevne i uz svečanije kombinacije."
   },
   {
     "id": "MD-03",
     "name": "Mesečeve kapi",
     "type": "mindjuse",
     "stone": "Mesečev kamen",
-    "description": "Lagane minđuše od mesečevog kamena koje prelepo hvataju svetlost.",
     "price": 2800,
     "currency": "RSD",
+    "available": true,
     "image": "images/products/mindjuse-mesecev-kamen.jpg",
-    "available": true
-  },
-  {
-    "id": "ST-01",
-    "name": "Set harmonije",
-    "type": "set",
-    "stone": "Rozenkvarc + Ametist",
-    "description": "Komplet ogrlica + narukvica u kombinaciji rozenkvarca i ametista.",
-    "price": 5800,
-    "currency": "RSD",
-    "image": "images/products/set-rozenkvarc-ametist.jpg",
-    "available": true
-  },
-  {
-    "id": "NK-99",
-    "name": "Rasprodata narukvica (primer)",
-    "type": "narukvica",
-    "stone": "Oniks",
-    "description": "Primer za artikal koji je rasprodat.",
-    "price": 2100,
-    "currency": "RSD",
-    "image": "images/products/narukvica-oniks.jpg",
-    "available": false
+    "description": "Lagane minđuše od mesečevog kamena koje nežno reflektuju svetlost. Diskretan, ali primećljiv sjaj za svaki dan ili posebnu priliku."
   }
 ]
