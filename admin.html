@@ -226,7 +226,21 @@
     const price = parseInt(($("f_price").value || "0"), 10);
     const currency = $("f_currency").value;
     const available = $("f_available").value === "true";
-    const image = ($("f_image").value || "").trim();
+ let image = ($("f_image").value || "").trim();
+
+// Normalizacija putanje slike za GitHub Pages:
+// dozvoljeno: "images/products/ime.jpg"
+// ako korisnik nalepi lokalnu putanju (sa folderima), izvuci samo od "images/"
+if (image) {
+  image = image.replace(/\\/g, "/"); // Windows backslash -> slash
+  const idx = image.toLowerCase().indexOf("images/");
+  if (idx >= 0) image = image.slice(idx);
+  // ako je nalepio samo ime fajla, prebaci u images/products/
+  if (!image.startsWith("images/") && !image.includes("/")) {
+    image = "images/products/" + image;
+  }
+}
+
     const description = ($("f_description").value || "").trim();
 
     return { id, name, type, stone, price, currency, available, image, description };

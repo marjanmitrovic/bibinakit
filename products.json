@@ -7,7 +7,7 @@
     "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "Bibi nakit sajt/images/products/narukvica-rozenkvarc.jpg",
+    "image": "images/products/narukvica-rozenkvarc.jpg",
     "description": ""
   },
   {
@@ -18,7 +18,7 @@
     "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "Bibi nakit sajt/images/products/ogrlica-ametist.jpg",
+    "image": "images/products/ogrlica-ametist.jpg",
     "description": ""
   },
   {
@@ -29,7 +29,7 @@
     "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "Bibi nakit sajt/images/products/mindjuse-mesecev-kamen.jpg",
+    "image": "images/products/mindjuse-mesecev-kamen.jpg",
     "description": ""
   }
 ]
