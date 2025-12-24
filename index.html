@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Favicon (možeš već imati svoj paket, zadrži ili prilagodi) -->
+  <!-- Favicon paket -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -20,7 +20,7 @@
 
   <style>
     :root {
-      --primary: #b87a5b;      /* boja kamena / zlata */
+      --primary: #b87a5b;
       --primary-dark: #9c6044;
       --bg: #f9f5f2;
       --text: #333333;
@@ -33,11 +33,7 @@
       --transition: 0.25s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,15 +42,8 @@
       line-height: 1.6;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       width: 100%;
@@ -77,29 +66,15 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 0;
+      gap: 14px;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+    .logo { display: flex; align-items: center; gap: 0.4rem; }
+    .logo-img { height:130px; width:auto; display:block; }
+    @media(max-width:700px){ .logo-img{height:100px;} }
 
-    .logo-img { height:130px; }
-@media(max-width:700px){ .logo-img{height:100px;} }
-
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.2rem;
-    }
-
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    .nav-links a { position: relative; padding-bottom: 0.2rem; }
     .nav-links a::after {
       content: "";
       position: absolute;
@@ -111,10 +86,7 @@
       transition: width var(--transition);
       border-radius: 999px;
     }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
+    .nav-links a:hover::after { width: 100%; }
 
     .nav-toggle {
       display: none;
@@ -126,14 +98,25 @@
       padding: 0.2rem 0.4rem;
     }
 
-    main {
-      padding-bottom: 3rem;
+    .theme-toggle {
+      margin-left: 8px;
+      font-size: 20px;
+      background: none;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
+    .theme-toggle:hover { opacity: 0.85; }
 
-    .hero {
-      padding: 2.5rem 0 2.2rem;
-    }
+    main { padding-bottom: 3rem; }
 
+    .hero { padding: 2.5rem 0 2.2rem; }
     .hero-inner {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
@@ -153,24 +136,13 @@
       color: var(--muted);
       margin-bottom: 0.9rem;
     }
-
     .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: radial-gradient(circle at center, #ffd8b0 0%, #c7834c 60%);
     }
 
-    .hero-title {
-      font-size: 2.3rem;
-      line-height: 1.2;
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-title span {
-      color: var(--primary-dark);
-    }
-
+    .hero-title { font-size: 2.3rem; line-height: 1.2; margin-bottom: 0.7rem; }
+    .hero-title span { color: var(--primary-dark); }
     .hero-subtitle {
       font-size: 0.98rem;
       color: var(--muted);
@@ -178,12 +150,7 @@
       max-width: 36rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-bottom: 1rem;
-    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:0.7rem; margin-bottom:1rem; }
 
     .hero-meta {
       display: flex;
@@ -213,17 +180,8 @@
       overflow: hidden;
       margin-bottom: 0.8rem;
     }
-
-    .hero-img-wrap img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-    }
-
-    .hero-small-note {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .hero-img-wrap img { width:100%; height:260px; object-fit:cover; }
+    .hero-small-note { font-size: 0.85rem; color: var(--muted); }
 
     .btn {
       display: inline-flex;
@@ -240,35 +198,19 @@
       color: #fff;
       box-shadow: 0 10px 20px rgba(0,0,0,0.12);
       transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      white-space: nowrap;
     }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 14px 26px rgba(0,0,0,0.16);
-    }
-
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.03); box-shadow: 0 14px 26px rgba(0,0,0,0.16); }
     .btn-secondary {
       background: #fff;
       color: var(--primary-dark);
       box-shadow: 0 8px 16px rgba(0,0,0,0.05);
       border: 1px solid rgba(0,0,0,0.04);
     }
+    .btn-small { padding: 0.55rem 1rem; font-size: 0.86rem; }
 
-    .btn-small {
-      padding: 0.55rem 1rem;
-      font-size: 0.86rem;
-    }
-
-    section {
-      padding: 2.5rem 0;
-    }
-
-    .section-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
-
+    section { padding: 2.5rem 0; }
+    .section-title { font-size: 1.6rem; margin-bottom: 0.4rem; }
     .section-subtitle {
       font-size: 0.95rem;
       color: var(--muted);
@@ -277,26 +219,14 @@
     }
 
     /* O meni */
-
     .about-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 2rem;
       align-items: center;
     }
-
-    .about-text p {
-      margin-bottom: 0.7rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .about-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.7rem;
-    }
+    .about-text p { margin-bottom: 0.7rem; font-size: 0.95rem; color: var(--muted); }
+    .about-features { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.7rem; }
 
     .chip {
       display: inline-flex;
@@ -307,28 +237,40 @@
       font-size: 0.8rem;
       background: rgba(255,255,255,0.9);
       border: 1px solid rgba(0,0,0,0.04);
+      color: var(--text);
     }
-
-    .chip-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
+    .chip-dot { width:6px; height:6px; border-radius:50%; background: var(--primary); }
 
     .about-photo-inner {
       border-radius: var(--radius-xl);
       overflow: hidden;
       box-shadow: var(--shadow-soft);
     }
+    .about-photo-inner img { width:100%; height:260px; object-fit:cover; }
 
-    .about-photo-inner img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
+    /* Kolekcija (preview) */
+    .category-tabs{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin: 0 0 14px;
     }
-
-    /* Kolekcija */
+    .category-tabs .tab{
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
+      border-radius:999px;
+      padding:8px 14px;
+      cursor:pointer;
+      font-size:.9rem;
+      color: var(--primary-dark);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    }
+    .category-tabs .tab:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .category-tabs .tab.active{
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:#fff;
+      border-color: transparent;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
 
     .products-filters {
       display: flex;
@@ -337,19 +279,8 @@
       margin-bottom: 1.5rem;
       align-items: flex-end;
     }
-
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      min-width: 160px;
-    }
-
-    .filter-group label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
+    .filter-group { display:flex; flex-direction:column; gap:0.25rem; min-width:160px; }
+    .filter-group label { font-size: 0.8rem; color: var(--muted); }
     .products-filters select {
       border-radius: 999px;
       border: 1px solid #ddd;
@@ -360,12 +291,7 @@
       font-family: inherit;
     }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.4rem;
-    }
-
+    .products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
     .product-card {
       background: var(--light);
       border-radius: var(--radius-lg);
@@ -376,75 +302,22 @@
       flex-direction: column;
       gap: 0.6rem;
     }
-
-    .product-image-wrap {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #eee;
-    }
-
-    .product-image-wrap img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
-    }
-
+    .product-image-wrap { position: relative; border-radius: 14px; overflow: hidden; background: #eee; }
+    .product-image-wrap img { width:100%; height:160px; object-fit:cover; display:block; }
     .product-tag {
-      position: absolute;
-      top: 0.6rem;
-      left: 0.7rem;
-      padding: 0.16rem 0.6rem;
-      font-size: 0.75rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
+      position:absolute; top:0.6rem; left:0.7rem;
+      padding:0.16rem 0.6rem; font-size:0.75rem;
+      border-radius:999px; background: rgba(0,0,0,0.7); color:#fff;
     }
-
-    .product-title {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .product-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .product-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.85rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .product-price {
-      font-weight: 600;
-      color: var(--primary-dark);
-    }
-
-    .product-sku {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .product-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .product-title { font-size: 1rem; margin-bottom: 0.2rem; }
+    .product-desc { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .product-meta { display:flex; justify-content:space-between; align-items:baseline; font-size:0.85rem; margin-bottom:0.6rem; }
+    .product-price { font-weight: 600; color: var(--primary-dark); }
+    .product-sku { font-size: 0.8rem; color: var(--muted); }
+    .product-actions { display:flex; flex-wrap:wrap; gap:0.4rem; }
 
     /* Kako poručiti & kontakt */
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.2rem;
-    }
-
+    .steps-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
     .step-card {
       background: #fff;
       border-radius: var(--radius-lg);
@@ -454,10 +327,8 @@
       font-size: 0.9rem;
       color: var(--muted);
     }
-
     .step-number {
-      width: 24px;
-      height: 24px;
+      width: 24px; height: 24px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -479,22 +350,9 @@
       gap: 1rem;
       align-items: center;
     }
-
-    .contact-list {
-      list-style: none;
-      font-size: 0.92rem;
-      color: var(--muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .contact-list li {
-      margin-bottom: 0.35rem;
-    }
-
-    .contact-list span {
-      font-weight: 500;
-      color: var(--text);
-    }
+    .contact-list { list-style:none; font-size:0.92rem; color: var(--muted); margin-bottom:0.8rem; }
+    .contact-list li { margin-bottom: 0.35rem; }
+    .contact-list span { font-weight: 500; color: var(--text); }
 
     footer {
       border-top: 1px solid rgba(0,0,0,0.04);
@@ -506,45 +364,18 @@
     }
 
     @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .about-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .steps-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .contact-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .hero-inner { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps-grid { grid-template-columns: 1fr; }
+      .contact-card { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 700px) {
-      .container {
-        padding: 0 1.1rem;
-      }
-
-      .nav {
-        padding: 0.8rem 0;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
+      .container { padding: 0 1.1rem; }
+      .nav { padding: 0.8rem 0; }
+      .nav-toggle { display: block; }
       .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
+        position: absolute; top: 100%; right: 0; left: 0;
         background: rgba(249,245,242,0.98);
         flex-direction: column;
         padding: 0.7rem 1.1rem 1rem;
@@ -552,134 +383,41 @@
         border-bottom: 1px solid rgba(0,0,0,0.05);
         display: none;
       }
-
-      body.nav-open .nav-links {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 0.35rem 0;
-      }
-
-      .hero {
-        padding-top: 1.4rem;
-      }
-
-      .hero-title {
-        font-size: 1.9rem;
-      }
-
-      .hero-inner {
-        gap: 1.6rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-
-      section {
-        padding: 2rem 0;
-      }
-
-      .products-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      body.nav-open .nav-links { display: flex; }
+      .nav-links a { padding: 0.35rem 0; }
+      .hero { padding-top: 1.4rem; }
+      .hero-title { font-size: 1.9rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      section { padding: 2rem 0; }
+      .products-grid { grid-template-columns: 1fr; }
     }
-    /* =========================
-   DARK / LIGHT MODE
-========================= */
 
-:root {
-  --bg-main: #f9f5f2;
-  --bg-card: #ffffff;
-  --text-main: #1f1f1f;
-  --text-muted: #6b6b6b;
-  --border-main: #e7dfd7;
-}
+    /* DARK MODE (tema) */
+    :root {
+      --bg-main: #f9f5f2;
+      --bg-card: #ffffff;
+      --text-main: #1f1f1f;
+      --text-muted: #6b6b6b;
+      --border-main: #e7dfd7;
+    }
+    body.dark {
+      --bg-main: #121212;
+      --bg-card: #1e1e1e;
+      --text-main: #f1f1f1;
+      --text-muted: #b5b5b5;
+      --border-main: #2e2e2e;
+    }
+    body { background: var(--bg-main); color: var(--text-main); }
+    header, section, .product-card, .step-card, .contact-card { background: var(--bg-card); border-color: var(--border-main); }
+    p, span, small { color: var(--text-muted); }
 
-body.dark {
-  --bg-main: #121212;
-  --bg-card: #1e1e1e;
-  --text-main: #f1f1f1;
-  --text-muted: #b5b5b5;
-  --border-main: #2e2e2e;
-}
-
-body {
-  background: var(--bg-main);
-  color: var(--text-main);
-}
-
-.card,
-.product-card,
-header,
-section {
-  background: var(--bg-card);
-  border-color: var(--border-main);
-}
-
-p,
-span,
-small {
-  color: var(--text-muted);
-}
-.theme-toggle {
-  margin-left: 14px;
-  font-size: 20px;
-  background: none;
-  border: 1px solid var(--border-main);
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  cursor: pointer;
-  color: var(--text-main);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.theme-toggle:hover {
-  opacity: 0.8;
-}
-
-
-  
-/* FIX: chip/pill tekst u DARK modu (tamna slova na svetloj pozadini) */
-body.dark .chip{
-  background: #f2f2f2 !important;
-  color: #1a1a1a !important;
-}
-body.dark .chip span{
-  color: #1a1a1a !important;
-}
-body.dark .chip-dot{
-  background: var(--primary) !important;
-}
-.category-tabs{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin: 0 0 14px;
-}
-.category-tabs .tab{
-  border:1px solid rgba(0,0,0,0.08);
-  background:#fff;
-  border-radius:999px;
-  padding:8px 14px;
-  cursor:pointer;
-}
-.category-tabs .tab.active{
-  background:#000;
-  color:#fff;
-}
-
-</style>
+    /* Chip u dark modu */
+    body.dark .chip{ background:#f2f2f2 !important; color:#1a1a1a !important; }
+    body.dark .chip span{ color:#1a1a1a !important; }
+  </style>
 </head>
+
 <body id="top">
 
 <header>
@@ -687,14 +425,10 @@ body.dark .chip-dot{
     <a href="#top" class="logo">
       <img src="images/logo-bibi-dark.png" alt="Bibi nakit – ručno rađen nakit od poludragog kamenja" class="logo-img">
     </a>
-    <button id="themeToggle" class="theme-toggle" aria-label="Promeni temu">
-  🌙
-</button>
 
+    <button id="themeToggle" class="theme-toggle" aria-label="Promeni temu">🌙</button>
 
-    <button class="nav-toggle" aria-label="Otvori meni">
-      ☰
-    </button>
+    <button class="nav-toggle" aria-label="Otvori meni">☰</button>
 
     <nav class="nav-links">
       <a href="#kolekcija">Kolekcija</a>
@@ -723,12 +457,8 @@ body.dark .chip-dot{
         </p>
 
         <div class="hero-actions">
-          <a href="#kolekcija" class="btn">
-            Pogledaj kolekciju
-          </a>
-          <a href="#kontakt" class="btn btn-secondary">
-            Poruči preko Viber / WhatsApp
-          </a>
+          <a href="#kolekcija" class="btn">Pogledaj kolekciju</a>
+          <a href="#kontakt" class="btn btn-secondary">Poruči preko Viber / WhatsApp</a>
         </div>
 
         <div class="hero-meta">
@@ -740,8 +470,7 @@ body.dark .chip-dot{
       <div class="hero-card">
         <div class="hero-card-tag">Nova kolekcija – proleće / leto</div>
         <div class="hero-img-wrap">
-          <img src="images/hero/hero-nakit.jpg"
-               alt="Ručni nakit od poludragog kamenja – Bibi nakit">
+          <img src="images/hero/hero-nakit.jpg" alt="Ručni nakit od poludragog kamenja – Bibi nakit">
         </div>
 
         <p class="hero-small-note">
@@ -784,15 +513,14 @@ body.dark .chip-dot{
 
         <div class="about-photo">
           <div class="about-photo-inner">
-            <img src="images/about/bibi-radionica.jpg"
-                 alt="Bibi izrađuje nakit u radionici">
+            <img src="images/about/bibi-radionica.jpg" alt="Bibi izrađuje nakit u radionici">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KOLEKCIJA PREVIEW (isto kao sada, ali puni se iz products.json) -->
+  <!-- KOLEKCIJA PREVIEW -->
   <section id="kolekcija">
     <div class="container">
       <h2 class="section-title">Kolekcija nakita</h2>
@@ -800,17 +528,15 @@ body.dark .chip-dot{
         Ovo je mali deo onoga što trenutno imam u ponudi. Svaki komad je ručno rađen,
         u ograničenom broju. Klikom na „Poruči“ možete da mi pošaljete poruku sa šifrom modela.
       </p>
-    <div class="category-tabs" role="tablist" aria-label="Kategorije nakita">
-  <button class="tab active" type="button" data-type="">Sve</button>
-  <button class="tab" type="button" data-type="narukvica">Narukvice</button>
-  <button class="tab" type="button" data-type="ogrlica">Ogrlice</button>
-  <button class="tab" type="button" data-type="mindjuse">Minđuše</button>
-</div>
 
+      <div class="category-tabs" role="tablist" aria-label="Kategorije nakita">
+        <button class="tab active" type="button" data-type="">Sve</button>
+        <button class="tab" type="button" data-type="narukvica">Narukvice</button>
+        <button class="tab" type="button" data-type="ogrlica">Ogrlice</button>
+        <button class="tab" type="button" data-type="mindjuse">Minđuše</button>
+      </div>
 
       <div class="products-filters">
-       
-
         <div class="filter-group">
           <label for="filter-stone">Poludragi kamen</label>
           <select id="filter-stone">
@@ -827,12 +553,14 @@ body.dark .chip-dot{
             <option value="3">Preko 3.000 RSD</option>
           </select>
         </div>
+
+        <div style="display:flex;align-items:flex-end;gap:8px;">
+          <a class="btn btn-secondary btn-small" href="kolekcija.html">Otvori kompletnu kolekciju</a>
+        </div>
       </div>
 
       <div id="products-grid" class="products-grid">
-        <p style="font-size:0.9rem; color:#aaa;">
-          Učitavanje proizvoda...
-        </p>
+        <p style="font-size:0.9rem; color:#aaa;">Učitavanje proizvoda...</p>
       </div>
     </div>
   </section>
@@ -849,8 +577,7 @@ body.dark .chip-dot{
         <div class="step-card">
           <div class="step-number">1</div>
           <strong>Izaberi model</strong>
-          <p>Pošalji mi šifru modela (npr. <code>NK-01</code>) ili fotografiju nakita koji ti se dopada. 
-          Možeš i samo opisati šta želiš – boju, kamen, stil.</p>
+          <p>Pošalji mi šifru modela (npr. <code>NK-01</code>) ili fotografiju nakita koji ti se dopada.</p>
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
@@ -860,7 +587,7 @@ body.dark .chip-dot{
         <div class="step-card">
           <div class="step-number">3</div>
           <strong>Slanje i pakovanje</strong>
-          <p>Nakit šaljem kurirskom službom, pažljivo upakovan kao mali poklon. Za porudžbine preko 4.000 RSD isporuka je besplatna.</p>
+          <p>Nakit šaljem kurirskom službom, pažljivo upakovan. Za porudžbine preko 4.000 RSD isporuka je besplatna.</p>
         </div>
       </div>
     </div>
@@ -871,7 +598,7 @@ body.dark .chip-dot{
     <div class="container">
       <h2 class="section-title">Kontakt i porudžbine</h2>
       <p class="section-subtitle">
-        Ako nisi sigurna šta da odabereš, pošalji mi poruku – napiši za koga je nakit, povod i približan budžet, a ja ću predložiti idealnu kombinaciju.
+        Pošalji poruku sa šifrom modela ili napiši šta želiš – predložiću idealnu kombinaciju.
       </p>
 
       <div class="contact-card">
@@ -908,16 +635,10 @@ body.dark .chip-dot{
   const body = document.body;
 
   if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      body.classList.toggle("nav-open");
-    });
+    navToggle.addEventListener("click", () => body.classList.toggle("nav-open"));
   }
-
-  const navLinks = document.querySelectorAll(".nav-links a");
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      body.classList.remove("nav-open");
-    });
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => body.classList.remove("nav-open"));
   });
 
   // godina u footeru
@@ -925,53 +646,64 @@ body.dark .chip-dot{
 </script>
 
 <script>
-  // products.json učitavanje + filteri
+  // Tema
+  (function () {
+    const btn = document.getElementById("themeToggle");
+    if (!btn) return;
+
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+      document.body.classList.add("dark");
+      btn.textContent = "☀️";
+    }
+
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      btn.textContent = isDark ? "☀️" : "🌙";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  })();
+</script>
+
+<script>
+  // products.json učitavanje + filteri (BOM-safe)
   const PHONE_WHATSAPP = "38161355564";
   const PHONE_VIBER = "381611355564";
 
   const productsGrid = document.getElementById("products-grid");
-let activeType = ""; // kontrolise tab ("" = sve);
-
   const filterStone = document.getElementById("filter-stone");
   const filterPrice = document.getElementById("filter-price");
-const tabs = document.querySelectorAll(".category-tabs .tab");
 
-function setActiveTab(typeValue) {
-  tabs.forEach(tab => {
-    tab.classList.toggle(
-      "active",
-      (tab.dataset.type || "") === (typeValue || "")
-    );
-  });
-}
-
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    activeType = tab.dataset.type || "";
-    setActiveTab(activeType);
-    applyFilters();
-  });
-});
-
-function setActiveTab(typeValue) {
-  tabs.forEach(tab => {
-    tab.classList.toggle(
-      "active",
-      (tab.dataset.type || "") === (typeValue || "")
-    );
-  });
-}
-
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    filterType.value = tab.dataset.type || "";
-    setActiveTab(filterType.value);
-    applyFilters();
-  });
-});
-
-
+  const tabs = document.querySelectorAll(".category-tabs .tab");
+  let activeType = "";
   let allProducts = [];
+
+  async function loadProducts() {
+    const res = await fetch("products.json?v=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+
+    let text = await res.text();
+    text = text.replace(/^\uFEFF/, "").trim(); // BOM fix
+    return JSON.parse(text);
+  }
+
+  function setActiveTab(typeValue) {
+    tabs.forEach(tab => {
+      tab.classList.toggle(
+        "active",
+        (tab.dataset.type || "") === (typeValue || "")
+      );
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      activeType = tab.dataset.type || "";
+      setActiveTab(activeType);
+      applyFiltersAndRender();
+    });
+  });
 
   function createProductCard(product) {
     const waText = `Zdravo, zanima me model ${product.id} - ${product.name}.`;
@@ -982,7 +714,7 @@ tabs.forEach(tab => {
       ? product.image
       : "images/products/placeholder.jpg";
 
-    const availableBadge = product.available === false
+    const badge = product.available === false
       ? `<span class="product-tag" style="background: rgba(0,0,0,0.75);">Rasprodato</span>`
       : `<span class="product-tag">${product.stone || ""}</span>`;
 
@@ -993,24 +725,18 @@ tabs.forEach(tab => {
     card.innerHTML = `
       <div class="product-image-wrap">
         <img src="${imageSrc}" alt="${product.name}">
-        ${availableBadge}
+        ${badge}
       </div>
       <div class="product-body">
         <h3 class="product-title">${product.name}</h3>
-        <p class="product-desc">
-          ${product.description || ""}
-        </p>
+        <p class="product-desc">${product.description || ""}</p>
         <div class="product-meta">
           <span class="product-price">${product.price} ${product.currency || "RSD"}</span>
           <span class="product-sku">Šifra: ${product.id}</span>
         </div>
         <div class="product-actions" ${product.available === false ? 'style="opacity:0.5;"' : ''}>
-          <a class="btn btn-small" href="${waLink}" ${disabledAttr}>
-            Poruči preko WhatsApp
-          </a>
-          <a class="btn btn-small btn-secondary" href="${viberLink}" ${disabledAttr}>
-            Poruči preko Viber
-          </a>
+          <a class="btn btn-small" href="${waLink}" ${disabledAttr}>Poruči preko WhatsApp</a>
+          <a class="btn btn-small btn-secondary" href="${viberLink}" ${disabledAttr}>Poruči preko Viber</a>
         </div>
       </div>
     `;
@@ -1023,60 +749,18 @@ tabs.forEach(tab => {
       productsGrid.innerHTML = "<p>Trenutno nema proizvoda za odabrane filtere.</p>";
       return;
     }
-    products.forEach(product => {
-      const card = createProductCard(product);
-      productsGrid.appendChild(card);
-    });
+    products.forEach(p => productsGrid.appendChild(createProductCard(p)));
   }
 
-  function applyFilters() {
-    let filtered = [...allProducts];
-
-    const typeValue = activeType;
-if (typeValue) {
-  filtered = filtered.filter(p => p.type === typeValue);
-}
-
-
-    if (stoneValue) {
-      filtered = filtered.filter(p => p.stone === stoneValue);
-    }
-
-    if (priceValue === "1") {
-      filtered = filtered.filter(p => p.price <= 2000);
-    } else if (priceValue === "2") {
-      filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
-    } else if (priceValue === "3") {
-      filtered = filtered.filter(p => p.price > 3000);
-    }
-setActiveTab(activeType);
-
-
-
-    renderProducts(filtered);
-  }
-
-  function populateFilterOptions(products) {
-    const types = new Set();
+  function populateStoneOptions(products) {
     const stones = new Set();
+    products.forEach(p => { if (p.stone) stones.add(p.stone); });
 
-    products.forEach(p => {
-      if (p.type) types.add(p.type);
-      if (p.stone) stones.add(p.stone);
-    });
-
-    types.forEach(type => {
-      const opt = document.createElement("option");
-      opt.value = type;
-      let label = "";
-      if (type === "narukvica") label = "Narukvice";
-      else if (type === "ogrlica") label = "Ogrlice";
-      else if (type === "mindjuse") label = "Minđuše";
-      else if (type === "set") label = "Setovi";
-      else label = type;
-      opt.textContent = label;
-      filterType.appendChild(opt);
-    });
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = "Svi kameni";
+    filterStone.innerHTML = "";
+    filterStone.appendChild(first);
 
     stones.forEach(stone => {
       const opt = document.createElement("option");
@@ -1086,75 +770,52 @@ setActiveTab(activeType);
     });
   }
 
-  fetch("products.json")
-    .then(response => {
-      if (!response.ok) throw new Error("Ne mogu da učitam products.json");
-      return response.json();
-    })
-    .then(products => {
-  allProducts = products || [];
-  productsGrid.innerHTML = "";
-
-  populateFilterOptions(allProducts);
-
-  // Prikaži samo 3 "najnovija" (po ID-u)
-  const latest3 = [...allProducts]
-    .sort((a, b) => (b.id || "").localeCompare(a.id || ""))
-    .slice(0, 3);
-
-  renderProducts(latest3);
-
-  filterType.addEventListener("change", () => {
-    // filteri rade nad celom listom, ali i dalje limitiramo na 3 rezultata
+  function applyFilters() {
     let filtered = [...allProducts];
 
-    const typeValue = filterType.value;
-    const stoneValue = filterStone.value;
-    const priceValue = filterPrice.value;
+    if (activeType) filtered = filtered.filter(p => p.type === activeType);
 
-    if (typeValue) filtered = filtered.filter(p => p.type === typeValue);
+    const stoneValue = filterStone.value;
     if (stoneValue) filtered = filtered.filter(p => p.stone === stoneValue);
 
-    if (priceValue === "1") filtered = filtered.filter(p => p.price <= 2000);
-    else if (priceValue === "2") filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
-    else if (priceValue === "3") filtered = filtered.filter(p => p.price > 3000);
+    const priceValue = filterPrice.value;
+    if (priceValue === "1") filtered = filtered.filter(p => (p.price || 0) <= 2000);
+    else if (priceValue === "2") filtered = filtered.filter(p => (p.price || 0) > 2000 && (p.price || 0) <= 3000);
+    else if (priceValue === "3") filtered = filtered.filter(p => (p.price || 0) > 3000);
 
-    const latestFiltered3 = filtered
+    return filtered;
+  }
+
+  function applyFiltersAndRender() {
+    const filtered = applyFilters();
+
+    // Na početnoj prikazujemo samo 3 najnovija (po ID-u)
+    const latest3 = [...filtered]
       .sort((a, b) => (b.id || "").localeCompare(a.id || ""))
       .slice(0, 3);
 
-    renderProducts(latestFiltered3);
-  });
-
-  filterStone.addEventListener("change", () => filterType.dispatchEvent(new Event("change")));
-  filterPrice.addEventListener("change", () => filterType.dispatchEvent(new Event("change")));
-})
-
-    .catch(err => {
-      console.error(err);
-      productsGrid.innerHTML = "<p>Došlo je do greške pri učitavanju proizvoda.</p>";
-    });
-</script>
-<script>
-(function () {
-  const btn = document.getElementById("themeToggle");
-  if (!btn) return;
-
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark") {
-    document.body.classList.add("dark");
-    btn.textContent = "☀️";
+    renderProducts(latest3);
   }
 
-  btn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    const isDark = document.body.classList.contains("dark");
-    btn.textContent = isDark ? "☀️" : "🌙";
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-})();
-</script>
+  (async function init() {
+    try {
+      allProducts = await loadProducts();
 
+      activeType = "";
+      setActiveTab(activeType);
+
+      populateStoneOptions(allProducts);
+
+      filterStone.addEventListener("change", applyFiltersAndRender);
+      filterPrice.addEventListener("change", applyFiltersAndRender);
+
+      applyFiltersAndRender();
+    } catch (err) {
+      console.error(err);
+      productsGrid.innerHTML = "<p>Došlo je do greške pri učitavanju proizvoda.</p>";
+    }
+  })();
+</script>
 
 </body>
 </html>

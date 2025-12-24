@@ -41,8 +41,9 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
-    .nav { display:flex; align-items:center; justify-content:space-between; padding: 1.2rem 0; }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: 1.2rem 0; gap:14px; }
     .logo-img { height: 130px; width:auto; display:block; }
+
     .nav-links { display:flex; gap:1.5rem; font-size:.95rem; }
     .nav-links a { position:relative; padding-bottom:.2rem; }
     .nav-links a::after {
@@ -58,7 +59,6 @@
     .hero-title span { color: var(--primary-dark); }
     .hero-subtitle { color: var(--muted); margin-bottom: 1rem; max-width: 48rem; }
 
-    /* Tabs */
     .category-tabs{
       display:flex; flex-wrap:wrap; gap:8px;
       margin: 0 0 14px;
@@ -157,11 +157,12 @@
       body.nav-open .nav-links { display:flex; }
       .nav-links a { padding: .35rem 0; }
 
-      .logo-img { height: 90px; } /* mobilni logo */
+      .logo-img { height: 90px; }
       .products-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -188,7 +189,6 @@
       Ovde su svi proizvodi iz <code>products.json</code>. Filtriraj po kategoriji (tabovi), kamenu i ceni.
     </p>
 
-    <!-- TABOVI -->
     <div class="category-tabs" role="tablist" aria-label="Kategorije nakita">
       <button class="tab active" type="button" data-type="">Sve</button>
       <button class="tab" type="button" data-type="narukvica">Narukvice</button>
@@ -196,7 +196,6 @@
       <button class="tab" type="button" data-type="mindjuse">Minđuše</button>
     </div>
 
-    <!-- FILTERI (kamen + cena) -->
     <div class="products-filters">
       <div class="filter-group">
         <label for="filter-stone">Poludragi kamen</label>
@@ -251,8 +250,16 @@
 
   const tabs = document.querySelectorAll(".category-tabs .tab");
   let activeType = "";
-
   let allProducts = [];
+
+  async function loadProducts() {
+    const res = await fetch("products.json?v=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+
+    let text = await res.text();
+    text = text.replace(/^\uFEFF/, "").trim(); // BOM fix
+    return JSON.parse(text);
+  }
 
   function setActiveTab(typeValue) {
     tabs.forEach(tab => {
@@ -322,9 +329,11 @@
     const stones = new Set();
     products.forEach(p => { if (p.stone) stones.add(p.stone); });
 
-    const keepFirst = filterStone.options[0];
+    const first = document.createElement("option");
+    first.value = "";
+    first.textContent = "Svi kameni";
     filterStone.innerHTML = "";
-    filterStone.appendChild(keepFirst);
+    filterStone.appendChild(first);
 
     stones.forEach(stone => {
       const opt = document.createElement("option");
@@ -343,37 +352,32 @@
     if (stoneValue) filtered = filtered.filter(p => p.stone === stoneValue);
 
     const priceValue = filterPrice.value;
-    if (priceValue === "1") filtered = filtered.filter(p => p.price <= 2000);
-    else if (priceValue === "2") filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
-    else if (priceValue === "3") filtered = filtered.filter(p => p.price > 3000);
+    if (priceValue === "1") filtered = filtered.filter(p => (p.price || 0) <= 2000);
+    else if (priceValue === "2") filtered = filtered.filter(p => (p.price || 0) > 2000 && (p.price || 0) <= 3000);
+    else if (priceValue === "3") filtered = filtered.filter(p => (p.price || 0) > 3000);
 
     setActiveTab(activeType);
     renderProducts(filtered);
   }
 
-  fetch("products.json")
-    .then(r => {
-      if (!r.ok) throw new Error("Ne mogu da učitam products.json");
-      return r.json();
-    })
-    .then(products => {
-      allProducts = products || [];
+  (async function init() {
+    try {
+      allProducts = await loadProducts();
 
       activeType = "";
       setActiveTab(activeType);
 
       populateStoneOptions(allProducts);
 
-      // inicijalni prikaz: sve
-      applyFilters();
-
       filterStone.addEventListener("change", applyFilters);
       filterPrice.addEventListener("change", applyFilters);
-    })
-    .catch(err => {
+
+      applyFilters();
+    } catch (err) {
       console.error(err);
       productsGrid.innerHTML = "<p>Došlo je do greške pri učitavanju proizvoda.</p>";
-    });
+    }
+  })();
 </script>
 
 </body>
