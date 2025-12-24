@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bibi nakit – Admin (lokalno)</title>
+  <style>
+    :root{
+      --bg:#f9f5f2; --card:#fff; --text:#222; --muted:#666; --line:#e9e0d8;
+      --primary:#b87a5b; --primary2:#9c6044; --danger:#c0392b;
+      --shadow:0 10px 25px rgba(0,0,0,.06); --r:18px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    body{margin:0;background:var(--bg);color:var(--text);}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px;}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px;}
+    h1{font-size:20px;margin:0;}
+    .hint{color:var(--muted);font-size:13px;margin:4px 0 0;}
+    .grid{display:grid;grid-template-columns: 1fr 1fr; gap:14px;}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr;} }
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:14px;}
+    .row{display:grid;grid-template-columns: 1fr 1fr; gap:10px;}
+    @media (max-width: 560px){ .row{grid-template-columns:1fr;} }
+    label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px;}
+    input, select, textarea{
+      width:100%; padding:10px 12px; border:1px solid var(--line);
+      border-radius:12px; outline:none; font-size:14px; background:#fff;
+    }
+    textarea{min-height:92px; resize:vertical;}
+    .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    button{
+      border:0; cursor:pointer; border-radius:999px; padding:10px 14px; font-weight:600;
+      background:linear-gradient(135deg,var(--primary),var(--primary2)); color:#fff;
+    }
+    button.secondary{background:#fff;color:var(--primary2);border:1px solid var(--line);}
+    button.danger{background:var(--danger);}
+    .small{font-size:12px;color:var(--muted);}
+    .list{display:flex;flex-direction:column;gap:10px;}
+    .item{
+      display:grid; grid-template-columns: 72px 1fr auto; gap:10px; align-items:center;
+      border:1px solid var(--line); border-radius:14px; padding:10px;
+    }
+    .thumb{width:72px;height:54px;border-radius:12px;object-fit:cover;background:#eee;border:1px solid var(--line);}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px;}
+    .name{font-weight:700;}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
+    .actions button{padding:8px 12px;font-weight:700;}
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;background:#fff;}
+    .status{font-weight:700;}
+    .ok{color:#2e7d32;}
+    .no{color:#b71c1c;}
+    .topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:6px}
+    .search{flex:1;min-width:220px;}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;}
+    .notice{margin-top:8px;font-size:13px;color:var(--muted);}
+    .fileRow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    input[type="file"]{padding:8px;border-radius:12px;background:#fff}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Bibi nakit – Admin (lokalno)</h1>
+      <div class="hint">
+        Ovde dodaješ/menjaš proizvode i na kraju exportuješ novi <span class="mono">products.json</span>.
+        Ne ažurira GitHub sam — fajl ubaciš u projekat ili pošalješ Marjanu.
+      </div>
+    </div>
+    <div class="pill">
+      <span class="status" id="saveState">●</span>
+      <span class="small" id="saveText">Spremno</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <!-- FORM -->
+    <section class="card">
+      <h2 style="margin:0 0 8px;font-size:16px;">Proizvod</h2>
+
+      <div class="row">
+        <div>
+          <label>ID (npr. NK-01)</label>
+          <input id="f_id" placeholder="NK-01" />
+          <div class="small">Ako ostaviš prazno, napraviće se automatski.</div>
+        </div>
+        <div>
+          <label>Naziv</label>
+          <input id="f_name" placeholder="Narukvica ljubavi" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Tip</label>
+          <select id="f_type">
+            <option value="narukvica">Narukvica</option>
+            <option value="ogrlica">Ogrlica</option>
+            <option value="mindjuse">Minđuše</option>
+            <option value="set">Set</option>
+          </select>
+        </div>
+        <div>
+          <label>Kamen</label>
+          <input id="f_stone" placeholder="Rozenkvarc" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Cena</label>
+          <input id="f_price" type="number" min="0" step="1" placeholder="2200" />
+        </div>
+        <div>
+          <label>Valuta</label>
+          <select id="f_currency">
+            <option value="RSD">RSD</option>
+            <option value="EUR">EUR</option>
+            <option value="CZK">CZK</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>Dostupno</label>
+          <select id="f_available">
+            <option value="true">Da</option>
+            <option value="false">Ne (rasprodato)</option>
+          </select>
+        </div>
+        <div>
+          <label>Putanja do slike (u projektu)</label>
+          <input id="f_image" placeholder="images/products/ime-slike.jpg" />
+          <div class="small">Primer: <span class="mono">images/products/narukvica-rozenkvarc.jpg</span></div>
+        </div>
+      </div>
+
+      <label>Opis</label>
+      <textarea id="f_description" placeholder="Kratak opis proizvoda..."></textarea>
+
+      <div class="btns">
+        <button id="btnAdd">Dodaj / Sačuvaj</button>
+        <button class="secondary" id="btnNew" type="button">Novi unos</button>
+        <button class="secondary" id="btnDup" type="button">Dupliraj</button>
+        <button class="danger" id="btnDelete" type="button">Obriši</button>
+      </div>
+
+      <div class="notice">
+        Slike: klijent samo upiše putanju. Fajl slike treba ručno kopirati u <span class="mono">images/products/</span>.
+      </div>
+
+      <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+
+      <h3 style="margin:0 0 8px;font-size:14px;">Uvoz/Izvoz</h3>
+
+      <div class="fileRow">
+        <input id="fileImport" type="file" accept=".json,application/json" />
+        <button class="secondary" id="btnImport" type="button">Import JSON</button>
+        <button id="btnExport" type="button">Export products.json</button>
+      </div>
+
+      <div class="small" style="margin-top:8px;">
+        Import učitava postojeći <span class="mono">products.json</span> sa računara. Export pravi novi fajl za preuzimanje.
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section class="card">
+      <div class="topbar">
+        <div>
+          <h2 style="margin:0;font-size:16px;">Lista proizvoda</h2>
+          <div class="small" id="countText">0 proizvoda</div>
+        </div>
+        <input class="search" id="search" placeholder="Pretraga (naziv / kamen / id)..." />
+      </div>
+
+      <div style="margin-top:10px" class="list" id="list"></div>
+
+      <div class="small" style="margin-top:10px;">
+        Klikni <strong>Uredi</strong> da popuni formu. Redosled je automatski po tipu, pa po id-u.
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  // ---- state ----
+  const LS_KEY = "bibinakit_products_v1";
+  let products = [];
+  let editingId = null;
+
+  // ---- helpers ----
+  const $ = (id) => document.getElementById(id);
+  const setSaved = (ok, text) => {
+    $("saveState").textContent = "●";
+    $("saveState").className = "status " + (ok ? "ok" : "no");
+    $("saveText").textContent = text;
+  };
+
+  const normalizeId = (s) => (s || "").trim().toUpperCase();
+
+  function generateId(type) {
+    const prefix = type === "narukvica" ? "NK" :
+                   type === "ogrlica" ? "OG" :
+                   type === "mindjuse" ? "MD" :
+                   type === "set" ? "ST" : "PR";
+
+    const nums = products
+      .filter(p => (p.id || "").startsWith(prefix + "-"))
+      .map(p => parseInt((p.id || "").split("-")[1], 10))
+      .filter(n => Number.isFinite(n));
+
+    const next = (nums.length ? Math.max(...nums) : 0) + 1;
+    const padded = String(next).padStart(2, "0");
+    return `${prefix}-${padded}`;
+  }
+
+  function readForm() {
+    const type = $("f_type").value;
+    const idRaw = normalizeId($("f_id").value);
+    const id = idRaw || generateId(type);
+
+    const name = ($("f_name").value || "").trim();
+    const stone = ($("f_stone").value || "").trim();
+    const price = parseInt(($("f_price").value || "0"), 10);
+    const currency = $("f_currency").value;
+    const available = $("f_available").value === "true";
+    const image = ($("f_image").value || "").trim();
+    const description = ($("f_description").value || "").trim();
+
+    return { id, name, type, stone, price, currency, available, image, description };
+  }
+
+  function validateProduct(p) {
+    if (!p.name) return "Naziv je obavezan.";
+    if (!p.type) return "Tip je obavezan.";
+    if (!Number.isFinite(p.price) || p.price < 0) return "Cena mora biti broj (0 ili više).";
+    if (!p.currency) return "Valuta je obavezna.";
+    if (!p.id) return "ID nije validan.";
+    return null;
+  }
+
+  function fillForm(p) {
+    $("f_id").value = p.id || "";
+    $("f_name").value = p.name || "";
+    $("f_type").value = p.type || "narukvica";
+    $("f_stone").value = p.stone || "";
+    $("f_price").value = (p.price ?? "").toString();
+    $("f_currency").value = p.currency || "RSD";
+    $("f_available").value = (p.available === false) ? "false" : "true";
+    $("f_image").value = p.image || "";
+    $("f_description").value = p.description || "";
+  }
+
+  function clearForm() {
+    editingId = null;
+    $("f_id").value = "";
+    $("f_name").value = "";
+    $("f_type").value = "narukvica";
+    $("f_stone").value = "";
+    $("f_price").value = "";
+    $("f_currency").value = "RSD";
+    $("f_available").value = "true";
+    $("f_image").value = "";
+    $("f_description").value = "";
+  }
+
+  function sortProducts(arr) {
+    const typeRank = { narukvica: 1, ogrlica: 2, mindjuse: 3, set: 4 };
+    return [...arr].sort((a,b) => {
+      const ta = typeRank[a.type] ?? 99;
+      const tb = typeRank[b.type] ?? 99;
+      if (ta !== tb) return ta - tb;
+      return (a.id || "").localeCompare(b.id || "");
+    });
+  }
+
+  function saveToLocal() {
+    localStorage.setItem(LS_KEY, JSON.stringify(products, null, 2));
+    setSaved(true, "Sačuvano lokalno");
+  }
+
+  function loadFromLocal() {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return false;
+    try {
+      const data = JSON.parse(raw);
+      if (Array.isArray(data)) {
+        products = data;
+        return true;
+      }
+    } catch {}
+    return false;
+  }
+
+  // ---- render ----
+  function renderList() {
+    const q = ($("search").value || "").trim().toLowerCase();
+    const list = $("list");
+    list.innerHTML = "";
+
+    const filtered = sortProducts(products).filter(p => {
+      if (!q) return true;
+      return (p.name || "").toLowerCase().includes(q) ||
+             (p.stone || "").toLowerCase().includes(q) ||
+             (p.id || "").toLowerCase().includes(q);
+    });
+
+    $("countText").textContent = `${products.length} proizvoda`;
+
+    filtered.forEach(p => {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      const img = document.createElement("img");
+      img.className = "thumb";
+      img.alt = p.name || "Proizvod";
+      img.src = p.image || "";
+      img.onerror = () => { img.removeAttribute("src"); img.style.background = "#eee"; };
+
+      const mid = document.createElement("div");
+      mid.innerHTML = `
+        <div class="name">${p.name || "(bez naziva)"} <span class="small">(${p.id || ""})</span></div>
+        <div class="meta">
+          <span>Tip: <strong>${p.type || ""}</strong></span>
+          <span>Kamen: <strong>${p.stone || "-"}</strong></span>
+          <span>Cena: <strong>${p.price ?? ""} ${p.currency || ""}</strong></span>
+          <span>Dostupno: <strong>${p.available === false ? "Ne" : "Da"}</strong></span>
+        </div>
+      `;
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const bEdit = document.createElement("button");
+      bEdit.className = "secondary";
+      bEdit.textContent = "Uredi";
+      bEdit.onclick = () => { editingId = p.id; fillForm(p); window.scrollTo({top:0,behavior:"smooth"}); };
+
+      const bDel = document.createElement("button");
+      bDel.className = "danger";
+      bDel.textContent = "Obriši";
+      bDel.onclick = () => {
+        if (!confirm(`Obrisati "${p.name}" (${p.id})?`)) return;
+        products = products.filter(x => x.id !== p.id);
+        if (editingId === p.id) clearForm();
+        saveToLocal();
+        renderList();
+      };
+
+      actions.appendChild(bEdit);
+      actions.appendChild(bDel);
+
+      item.appendChild(img);
+      item.appendChild(mid);
+      item.appendChild(actions);
+
+      list.appendChild(item);
+    });
+  }
+
+  // ---- actions ----
+  $("btnAdd").addEventListener("click", (e) => {
+    e.preventDefault();
+    const p = readForm();
+    const err = validateProduct(p);
+    if (err) { alert(err); setSaved(false, "Greška u unosu"); return; }
+
+    // unique id
+    const exists = products.find(x => x.id === p.id);
+    if (exists && (!editingId || editingId !== p.id)) {
+      alert("ID već postoji. Promeni ID ili uđi u 'Uredi' za taj proizvod.");
+      setSaved(false, "ID duplikat");
+      return;
+    }
+
+    if (editingId) {
+      products = products.map(x => x.id === editingId ? p : x);
+      editingId = p.id; // in case id changed
+    } else {
+      products.push(p);
+      editingId = p.id;
+    }
+
+    saveToLocal();
+    renderList();
+    alert("Sačuvano.");
+  });
+
+  $("btnNew").addEventListener("click", () => { clearForm(); setSaved(true, "Novi unos"); });
+
+  $("btnDup").addEventListener("click", () => {
+    const p = readForm();
+    const copy = { ...p, id: generateId(p.type) };
+    fillForm(copy);
+    editingId = null;
+    setSaved(true, "Dupliranje (novi ID)");
+  });
+
+  $("btnDelete").addEventListener("click", () => {
+    if (!editingId) { alert("Nema izabranog proizvoda za brisanje (klikni Uredi)."); return; }
+    const p = products.find(x => x.id === editingId);
+    if (!p) { alert("Proizvod nije nađen."); return; }
+    if (!confirm(`Obrisati "${p.name}" (${p.id})?`)) return;
+    products = products.filter(x => x.id !== editingId);
+    clearForm();
+    saveToLocal();
+    renderList();
+  });
+
+  $("search").addEventListener("input", renderList);
+
+  // Import
+  $("btnImport").addEventListener("click", async () => {
+    const file = $("fileImport").files && $("fileImport").files[0];
+    if (!file) { alert("Izaberi JSON fajl."); return; }
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      if (!Array.isArray(data)) throw new Error("JSON mora biti niz (array).");
+      products = data;
+      saveToLocal();
+      renderList();
+      clearForm();
+      alert("Import uspešan.");
+    } catch (err) {
+      console.error(err);
+      alert("Neuspešan import. Proveri da li je JSON ispravan.");
+      setSaved(false, "Import greška");
+    }
+  });
+
+  // Export
+  $("btnExport").addEventListener("click", () => {
+    const data = sortProducts(products);
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "products.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
+
+  // ---- init ----
+  if (!loadFromLocal()) {
+    // initial empty list
+    products = [];
+    saveToLocal();
+  }
+  renderList();
+  setSaved(true, "Spremno");
+</script>
+</body>
+</html>

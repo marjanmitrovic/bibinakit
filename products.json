@@ -4,32 +4,32 @@
     "name": "Narukvica ljubavi",
     "type": "narukvica",
     "stone": "Rozenkvarc",
-    "price": 2200,
+    "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "images/products/narukvica-rozenkvarc.jpg",
-    "description": "Ručna narukvica od rozenkvarca sa diskretnom metalnom kopčom. Veruje se da rozenkvarc donosi nežnost, toplinu i otvara srce za ljubav."
+    "image": "Bibi nakit sajt/images/products/narukvica-rozenkvarc.jpg",
+    "description": ""
   },
   {
-    "id": "OG-05",
-    "name": "Ogrlica intuicije",
+    "id": "OG-03",
+    "name": "Ogrlica ametist",
     "type": "ogrlica",
     "stone": "Ametist",
-    "price": 3400,
+    "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "images/products/ogrlica-ametist.jpg",
-    "description": "Elegantna ogrlica od ametista, idealna za one koji veruju u snagu intuicije i unutrašnjeg mira. Lepo se uklapa i uz svakodnevne i uz svečanije kombinacije."
+    "image": "Bibi nakit sajt/images/products/ogrlica-ametist.jpg",
+    "description": ""
   },
   {
-    "id": "MD-03",
-    "name": "Mesečeve kapi",
+    "id": "MN-02",
+    "name": "Naušnice- Mesečev kamen",
     "type": "mindjuse",
     "stone": "Mesečev kamen",
-    "price": 2800,
+    "price": 0,
     "currency": "RSD",
     "available": true,
-    "image": "images/products/mindjuse-mesecev-kamen.jpg",
-    "description": "Lagane minđuše od mesečevog kamena koje nežno reflektuju svetlost. Diskretan, ali primećljiv sjaj za svaki dan ili posebnu priliku."
+    "image": "Bibi nakit sajt/images/products/mindjuse-mesecev-kamen.jpg",
+    "description": ""
   }
 ]
