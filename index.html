@@ -590,7 +590,95 @@
         grid-template-columns: minmax(0, 1fr);
       }
     }
-  </style>
+    /* =========================
+   DARK / LIGHT MODE
+========================= */
+
+:root {
+  --bg-main: #f9f5f2;
+  --bg-card: #ffffff;
+  --text-main: #1f1f1f;
+  --text-muted: #6b6b6b;
+  --border-main: #e7dfd7;
+}
+
+body.dark {
+  --bg-main: #121212;
+  --bg-card: #1e1e1e;
+  --text-main: #f1f1f1;
+  --text-muted: #b5b5b5;
+  --border-main: #2e2e2e;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.card,
+.product-card,
+header,
+section {
+  background: var(--bg-card);
+  border-color: var(--border-main);
+}
+
+p,
+span,
+small {
+  color: var(--text-muted);
+}
+.theme-toggle {
+  margin-left: 14px;
+  font-size: 20px;
+  background: none;
+  border: 1px solid var(--border-main);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  opacity: 0.8;
+}
+
+
+  
+/* FIX: chip/pill tekst u DARK modu (tamna slova na svetloj pozadini) */
+body.dark .chip{
+  background: #f2f2f2 !important;
+  color: #1a1a1a !important;
+}
+body.dark .chip span{
+  color: #1a1a1a !important;
+}
+body.dark .chip-dot{
+  background: var(--primary) !important;
+}
+.category-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin: 0 0 14px;
+}
+.category-tabs .tab{
+  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 14px;
+  cursor:pointer;
+}
+.category-tabs .tab.active{
+  background:#000;
+  color:#fff;
+}
+
+</style>
 </head>
 <body id="top">
 
@@ -599,6 +687,10 @@
     <a href="#top" class="logo">
       <img src="images/logo-bibi-dark.png" alt="Bibi nakit – ručno rađen nakit od poludragog kamenja" class="logo-img">
     </a>
+    <button id="themeToggle" class="theme-toggle" aria-label="Promeni temu">
+  🌙
+</button>
+
 
     <button class="nav-toggle" aria-label="Otvori meni">
       ☰
@@ -708,14 +800,16 @@
         Ovo je mali deo onoga što trenutno imam u ponudi. Svaki komad je ručno rađen,
         u ograničenom broju. Klikom na „Poruči“ možete da mi pošaljete poruku sa šifrom modela.
       </p>
+    <div class="category-tabs" role="tablist" aria-label="Kategorije nakita">
+  <button class="tab active" type="button" data-type="">Sve</button>
+  <button class="tab" type="button" data-type="narukvica">Narukvice</button>
+  <button class="tab" type="button" data-type="ogrlica">Ogrlice</button>
+  <button class="tab" type="button" data-type="mindjuse">Minđuše</button>
+</div>
+
 
       <div class="products-filters">
-        <div class="filter-group">
-          <label for="filter-type">Tip nakita</label>
-          <select id="filter-type">
-            <option value="">Svi tipovi</option>
-          </select>
-        </div>
+       
 
         <div class="filter-group">
           <label for="filter-stone">Poludragi kamen</label>
@@ -836,9 +930,46 @@
   const PHONE_VIBER = "381611355564";
 
   const productsGrid = document.getElementById("products-grid");
-  const filterType = document.getElementById("filter-type");
+let activeType = ""; // kontrolise tab ("" = sve);
+
   const filterStone = document.getElementById("filter-stone");
   const filterPrice = document.getElementById("filter-price");
+const tabs = document.querySelectorAll(".category-tabs .tab");
+
+function setActiveTab(typeValue) {
+  tabs.forEach(tab => {
+    tab.classList.toggle(
+      "active",
+      (tab.dataset.type || "") === (typeValue || "")
+    );
+  });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    activeType = tab.dataset.type || "";
+    setActiveTab(activeType);
+    applyFilters();
+  });
+});
+
+function setActiveTab(typeValue) {
+  tabs.forEach(tab => {
+    tab.classList.toggle(
+      "active",
+      (tab.dataset.type || "") === (typeValue || "")
+    );
+  });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    filterType.value = tab.dataset.type || "";
+    setActiveTab(filterType.value);
+    applyFilters();
+  });
+});
+
 
   let allProducts = [];
 
@@ -901,13 +1032,11 @@
   function applyFilters() {
     let filtered = [...allProducts];
 
-    const typeValue = filterType.value;
-    const stoneValue = filterStone.value;
-    const priceValue = filterPrice.value;
+    const typeValue = activeType;
+if (typeValue) {
+  filtered = filtered.filter(p => p.type === typeValue);
+}
 
-    if (typeValue) {
-      filtered = filtered.filter(p => p.type === typeValue);
-    }
 
     if (stoneValue) {
       filtered = filtered.filter(p => p.stone === stoneValue);
@@ -920,6 +1049,9 @@
     } else if (priceValue === "3") {
       filtered = filtered.filter(p => p.price > 3000);
     }
+setActiveTab(activeType);
+
+
 
     renderProducts(filtered);
   }
@@ -960,20 +1092,69 @@
       return response.json();
     })
     .then(products => {
-      allProducts = products || [];
-      productsGrid.innerHTML = "";
-      populateFilterOptions(allProducts);
-      renderProducts(allProducts);
+  allProducts = products || [];
+  productsGrid.innerHTML = "";
 
-      filterType.addEventListener("change", applyFilters);
-      filterStone.addEventListener("change", applyFilters);
-      filterPrice.addEventListener("change", applyFilters);
-    })
+  populateFilterOptions(allProducts);
+
+  // Prikaži samo 3 "najnovija" (po ID-u)
+  const latest3 = [...allProducts]
+    .sort((a, b) => (b.id || "").localeCompare(a.id || ""))
+    .slice(0, 3);
+
+  renderProducts(latest3);
+
+  filterType.addEventListener("change", () => {
+    // filteri rade nad celom listom, ali i dalje limitiramo na 3 rezultata
+    let filtered = [...allProducts];
+
+    const typeValue = filterType.value;
+    const stoneValue = filterStone.value;
+    const priceValue = filterPrice.value;
+
+    if (typeValue) filtered = filtered.filter(p => p.type === typeValue);
+    if (stoneValue) filtered = filtered.filter(p => p.stone === stoneValue);
+
+    if (priceValue === "1") filtered = filtered.filter(p => p.price <= 2000);
+    else if (priceValue === "2") filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
+    else if (priceValue === "3") filtered = filtered.filter(p => p.price > 3000);
+
+    const latestFiltered3 = filtered
+      .sort((a, b) => (b.id || "").localeCompare(a.id || ""))
+      .slice(0, 3);
+
+    renderProducts(latestFiltered3);
+  });
+
+  filterStone.addEventListener("change", () => filterType.dispatchEvent(new Event("change")));
+  filterPrice.addEventListener("change", () => filterType.dispatchEvent(new Event("change")));
+})
+
     .catch(err => {
       console.error(err);
       productsGrid.innerHTML = "<p>Došlo je do greške pri učitavanju proizvoda.</p>";
     });
 </script>
+<script>
+(function () {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️";
+  }
+
+  btn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    btn.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+})();
+</script>
+
 
 </body>
 </html>

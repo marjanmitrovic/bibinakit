@@ -4,10 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kolekcija nakita – Bibi nakit</title>
-
   <meta name="description" content="Kolekcija ručno rađenog nakita od poludragog kamenja. Ogrlice, narukvice, minđuše i setovi – Bibi nakit." />
 
-  <!-- Google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,372 +18,147 @@
       --text: #333333;
       --muted: #666666;
       --light: #ffffff;
-      --accent: #d1b89a;
       --shadow-soft: 0 10px 25px rgba(0,0,0,0.06);
       --radius-lg: 18px;
       --radius-xl: 26px;
       --transition: 0.25s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    img { max-width: 100%; display:block; }
+    a { color: inherit; text-decoration:none; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       background: rgba(249,245,242,0.96);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 0;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-   .logo-img { height:130px; }
-@media(max-width:700px){ .logo-img{height:100px;} }
-
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.2rem;
-    }
-
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: 1.2rem 0; }
+    .logo-img { height: 130px; width:auto; display:block; }
+    .nav-links { display:flex; gap:1.5rem; font-size:.95rem; }
+    .nav-links a { position:relative; padding-bottom:.2rem; }
     .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
+      content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
       background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-      transition: width var(--transition);
-      border-radius: 999px;
+      transition: width var(--transition); border-radius:999px;
     }
+    .nav-links a:hover::after { width:100%; }
+    .nav-toggle { display:none; background:transparent; border:none; font-size:1.7rem; cursor:pointer; padding:.2rem .4rem; }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    main { padding: 2rem 0 3rem; }
+    .hero-title { font-size: 2.1rem; margin-bottom:.4rem; }
+    .hero-title span { color: var(--primary-dark); }
+    .hero-subtitle { color: var(--muted); margin-bottom: 1rem; max-width: 48rem; }
+
+    /* Tabs */
+    .category-tabs{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin: 0 0 14px;
     }
-
-    .nav-toggle {
-      display: none;
-      background: transparent;
-      border: none;
-      font-size: 1.7rem;
-      line-height: 1;
-      cursor: pointer;
-      padding: 0.2rem 0.4rem;
-    }
-
-    main {
-      padding-bottom: 3rem;
-    }
-
-    .hero {
-      padding: 2.2rem 0 2rem;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr);
-      gap: 1.5rem;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.25rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #ffd8b0 0%, #c7834c 60%);
-    }
-
-    .hero-title {
-      font-size: 2.1rem;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-title span {
+    .category-tabs .tab{
+      border:1px solid rgba(0,0,0,0.08);
+      background:#fff;
       color: var(--primary-dark);
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:.9rem;
+      cursor:pointer;
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
     }
-
-    .hero-subtitle {
-      font-size: 0.96rem;
-      color: var(--muted);
-      max-width: 40rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-      padding: 0.7rem 1.3rem;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
+    .category-tabs .tab:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .category-tabs .tab.active{
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
-      white-space: nowrap;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      box-shadow: 0 14px 26px rgba(0,0,0,0.16);
-    }
-
-    .btn-secondary {
-      background: #fff;
-      color: var(--primary-dark);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .btn-small {
-      padding: 0.55rem 1rem;
-      font-size: 0.86rem;
-    }
-
-    section {
-      padding: 2.2rem 0;
-    }
-
-    .section-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 40rem;
-      margin-bottom: 1.3rem;
+      color:#fff; border-color: transparent;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
     }
 
     .products-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      align-items: flex-end;
+      display:flex; flex-wrap:wrap; gap:1rem;
+      margin: 0 0 1.2rem;
+      align-items:flex-end;
     }
-
-    .filter-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      min-width: 160px;
-    }
-
-    .filter-group label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
+    .filter-group { display:flex; flex-direction:column; gap:.25rem; min-width:160px; }
+    .filter-group label { font-size:.8rem; color: var(--muted); }
     .products-filters select {
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-      background: #fff;
-      outline: none;
-      font-family: inherit;
+      border-radius:999px; border:1px solid #ddd; padding:.4rem .8rem;
+      font-size:.9rem; background:#fff; outline:none; font-family: inherit;
     }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.4rem;
-    }
-
+    .products-grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:1.4rem; }
     .product-card {
       background: var(--light);
       border-radius: var(--radius-lg);
-      padding: 0.9rem;
+      padding: .9rem;
       box-shadow: var(--shadow-soft);
       border: 1px solid rgba(0,0,0,0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      display:flex; flex-direction:column; gap:.6rem;
     }
-
-    .product-image-wrap {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #eee;
-    }
-
-    .product-image-wrap img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
-    }
-
+    .product-image-wrap { position:relative; border-radius:14px; overflow:hidden; background:#eee; }
+    .product-image-wrap img { width:100%; height:160px; object-fit:cover; }
     .product-tag {
-      position: absolute;
-      top: 0.6rem;
-      left: 0.7rem;
-      padding: 0.16rem 0.6rem;
-      font-size: 0.75rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
+      position:absolute; top:.6rem; left:.7rem;
+      padding:.16rem .6rem; font-size:.75rem; border-radius:999px;
+      background: rgba(0,0,0,0.7); color:#fff;
     }
+    .product-title { font-size: 1rem; margin-bottom:.2rem; }
+    .product-desc { font-size:.88rem; color: var(--muted); margin-bottom:.6rem; }
+    .product-meta { display:flex; justify-content:space-between; align-items:baseline; font-size:.85rem; margin-bottom:.6rem; }
+    .product-price { font-weight:600; color: var(--primary-dark); }
+    .product-sku { font-size:.8rem; color: var(--muted); }
+    .product-actions { display:flex; flex-wrap:wrap; gap:.4rem; }
 
-    .product-title {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:.35rem;
+      padding:.7rem 1.3rem; border-radius:999px; border:none; cursor:pointer;
+      font-size:.92rem; font-weight:500;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color:#fff;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      white-space:nowrap;
     }
-
-    .product-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .product-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.85rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .product-price {
-      font-weight: 600;
-      color: var(--primary-dark);
-    }
-
-    .product-sku {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .product-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.03); box-shadow: 0 14px 26px rgba(0,0,0,0.16); }
+    .btn-secondary { background:#fff; color: var(--primary-dark); box-shadow: 0 8px 16px rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.04); }
+    .btn-small { padding:.55rem 1rem; font-size:.86rem; }
 
     footer {
       border-top: 1px solid rgba(0,0,0,0.04);
       padding: 1.1rem 0 1.4rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
+      font-size:.8rem; color: var(--muted);
+      text-align:center;
       background: rgba(249,245,242,0.95);
     }
 
     @media (max-width: 900px) {
-      .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .products-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     }
-
     @media (max-width: 700px) {
-      .container {
-        padding: 0 1.1rem;
-      }
-
-      .nav {
-        padding: 0.8rem 0;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
+      .container { padding: 0 1.1rem; }
+      .nav { padding: .8rem 0; }
+      .nav-toggle { display:block; }
       .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
+        position:absolute; top:100%; right:0; left:0;
         background: rgba(249,245,242,0.98);
-        flex-direction: column;
-        padding: 0.7rem 1.1rem 1rem;
-        gap: 0.6rem;
+        flex-direction:column;
+        padding: .7rem 1.1rem 1rem;
+        gap:.6rem;
         border-bottom: 1px solid rgba(0,0,0,0.05);
-        display: none;
+        display:none;
       }
+      body.nav-open .nav-links { display:flex; }
+      .nav-links a { padding: .35rem 0; }
 
-      body.nav-open .nav-links {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 0.35rem 0;
-      }
-
-      .products-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      section {
-        padding: 2rem 0;
-      }
+      .logo-img { height: 90px; } /* mobilni logo */
+      .products-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -394,15 +167,13 @@
 <header>
   <div class="container nav">
     <a href="index.html#top" class="logo">
-      <img src="images/logo-bibi-dark.png" alt="Bibi nakit – ručno rađen nakit od poludragog kamenja" class="logo-img">
+      <img src="images/logo-bibi-dark.png" alt="Bibi nakit" class="logo-img">
     </a>
 
-    <button class="nav-toggle" aria-label="Otvori meni">
-      ☰
-    </button>
+    <button class="nav-toggle" aria-label="Otvori meni">☰</button>
 
     <nav class="nav-links">
-      <a href="index.html#kolekcija">Kolekcija (početna)</a>
+      <a href="index.html#kolekcija">Početna</a>
       <a href="index.html#o-meni">O meni</a>
       <a href="index.html#kako-poruciti">Kako poručiti</a>
       <a href="index.html#kontakt">Kontakt</a>
@@ -411,65 +182,48 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="container hero-inner">
-      <div>
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Kompletna kolekcija nakita
-        </div>
-        <h1 class="hero-title">
-          Kolekcija <span>Bibi nakita</span>
-        </h1>
-        <p class="hero-subtitle">
-          Ovde možeš da pregledaš sve trenutno dostupne modele – narukvice, ogrlice, minđuše i setove
-          od poludragog kamenja. Filtriraj po tipu nakita, kamenu ili ceni i pronađi svoj idealan komad.
-        </p>
+  <div class="container">
+    <h1 class="hero-title">Kompletna <span>kolekcija</span></h1>
+    <p class="hero-subtitle">
+      Ovde su svi proizvodi iz <code>products.json</code>. Filtriraj po kategoriji (tabovi), kamenu i ceni.
+    </p>
+
+    <!-- TABOVI -->
+    <div class="category-tabs" role="tablist" aria-label="Kategorije nakita">
+      <button class="tab active" type="button" data-type="">Sve</button>
+      <button class="tab" type="button" data-type="narukvica">Narukvice</button>
+      <button class="tab" type="button" data-type="ogrlica">Ogrlice</button>
+      <button class="tab" type="button" data-type="mindjuse">Minđuše</button>
+    </div>
+
+    <!-- FILTERI (kamen + cena) -->
+    <div class="products-filters">
+      <div class="filter-group">
+        <label for="filter-stone">Poludragi kamen</label>
+        <select id="filter-stone">
+          <option value="">Svi kameni</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="filter-price">Cena</label>
+        <select id="filter-price">
+          <option value="">Sve cene</option>
+          <option value="1">Do 2.000 RSD</option>
+          <option value="2">2.001 – 3.000 RSD</option>
+          <option value="3">Preko 3.000 RSD</option>
+        </select>
+      </div>
+
+      <div style="display:flex;align-items:flex-end;gap:8px;">
+        <a class="btn btn-secondary btn-small" href="index.html#kolekcija">Nazad na početnu</a>
       </div>
     </div>
-  </section>
 
-  <section>
-    <div class="container">
-      <h2 class="section-title">Svi modeli u ponudi</h2>
-      <p class="section-subtitle">
-        Stranica se automatski puni na osnovu podataka iz <code>products.json</code>. Kada dodaš nove
-        proizvode u fajl, oni će se automatski pojaviti ovde i na početnoj stranici.
-      </p>
-
-      <div class="products-filters">
-        <div class="filter-group">
-          <label for="filter-type">Tip nakita</label>
-          <select id="filter-type">
-            <option value="">Svi tipovi</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="filter-stone">Poludragi kamen</label>
-          <select id="filter-stone">
-            <option value="">Svi kameni</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="filter-price">Cena</label>
-          <select id="filter-price">
-            <option value="">Sve cene</option>
-            <option value="1">Do 2.000 RSD</option>
-            <option value="2">2.001 – 3.000 RSD</option>
-            <option value="3">Preko 3.000 RSD</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="products-grid" class="products-grid">
-        <p style="font-size:0.9rem; color:#aaa;">
-          Učitavanje proizvoda...
-        </p>
-      </div>
+    <div id="products-grid" class="products-grid">
+      <p style="font-size:0.9rem; color:#aaa;">Učitavanje proizvoda...</p>
     </div>
-  </section>
+  </div>
 </main>
 
 <footer>
@@ -479,22 +233,11 @@
 </footer>
 
 <script>
+  // mobilni meni
   const navToggle = document.querySelector(".nav-toggle");
   const body = document.body;
-
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
-      body.classList.toggle("nav-open");
-    });
-  }
-
-  const navLinks = document.querySelectorAll(".nav-links a");
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      body.classList.remove("nav-open");
-    });
-  });
-
+  if (navToggle) navToggle.addEventListener("click", () => body.classList.toggle("nav-open"));
+  document.querySelectorAll(".nav-links a").forEach(a => a.addEventListener("click", () => body.classList.remove("nav-open")));
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
@@ -503,11 +246,30 @@
   const PHONE_VIBER = "381611355564";
 
   const productsGrid = document.getElementById("products-grid");
-  const filterType = document.getElementById("filter-type");
   const filterStone = document.getElementById("filter-stone");
   const filterPrice = document.getElementById("filter-price");
 
+  const tabs = document.querySelectorAll(".category-tabs .tab");
+  let activeType = "";
+
   let allProducts = [];
+
+  function setActiveTab(typeValue) {
+    tabs.forEach(tab => {
+      tab.classList.toggle(
+        "active",
+        (tab.dataset.type || "") === (typeValue || "")
+      );
+    });
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      activeType = tab.dataset.type || "";
+      setActiveTab(activeType);
+      applyFilters();
+    });
+  });
 
   function createProductCard(product) {
     const waText = `Zdravo, zanima me model ${product.id} - ${product.name}.`;
@@ -518,7 +280,7 @@
       ? product.image
       : "images/products/placeholder.jpg";
 
-    const availableBadge = product.available === false
+    const badge = product.available === false
       ? `<span class="product-tag" style="background: rgba(0,0,0,0.75);">Rasprodato</span>`
       : `<span class="product-tag">${product.stone || ""}</span>`;
 
@@ -529,24 +291,18 @@
     card.innerHTML = `
       <div class="product-image-wrap">
         <img src="${imageSrc}" alt="${product.name}">
-        ${availableBadge}
+        ${badge}
       </div>
       <div class="product-body">
         <h3 class="product-title">${product.name}</h3>
-        <p class="product-desc">
-          ${product.description || ""}
-        </p>
+        <p class="product-desc">${product.description || ""}</p>
         <div class="product-meta">
           <span class="product-price">${product.price} ${product.currency || "RSD"}</span>
           <span class="product-sku">Šifra: ${product.id}</span>
         </div>
         <div class="product-actions" ${product.available === false ? 'style="opacity:0.5;"' : ''}>
-          <a class="btn btn-small" href="${waLink}" ${disabledAttr}>
-            Poruči preko WhatsApp
-          </a>
-          <a class="btn btn-small btn-secondary" href="${viberLink}" ${disabledAttr}>
-            Poruči preko Viber
-          </a>
+          <a class="btn btn-small" href="${waLink}" ${disabledAttr}>Poruči WhatsApp</a>
+          <a class="btn btn-small btn-secondary" href="${viberLink}" ${disabledAttr}>Poruči Viber</a>
         </div>
       </div>
     `;
@@ -559,59 +315,16 @@
       productsGrid.innerHTML = "<p>Trenutno nema proizvoda za odabrane filtere.</p>";
       return;
     }
-    products.forEach(product => {
-      const card = createProductCard(product);
-      productsGrid.appendChild(card);
-    });
+    products.forEach(p => productsGrid.appendChild(createProductCard(p)));
   }
 
-  function applyFilters() {
-    let filtered = [...allProducts];
-
-    const typeValue = filterType.value;
-    const stoneValue = filterStone.value;
-    const priceValue = filterPrice.value;
-
-    if (typeValue) {
-      filtered = filtered.filter(p => p.type === typeValue);
-    }
-
-    if (stoneValue) {
-      filtered = filtered.filter(p => p.stone === stoneValue);
-    }
-
-    if (priceValue === "1") {
-      filtered = filtered.filter(p => p.price <= 2000);
-    } else if (priceValue === "2") {
-      filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
-    } else if (priceValue === "3") {
-      filtered = filtered.filter(p => p.price > 3000);
-    }
-
-    renderProducts(filtered);
-  }
-
-  function populateFilterOptions(products) {
-    const types = new Set();
+  function populateStoneOptions(products) {
     const stones = new Set();
+    products.forEach(p => { if (p.stone) stones.add(p.stone); });
 
-    products.forEach(p => {
-      if (p.type) types.add(p.type);
-      if (p.stone) stones.add(p.stone);
-    });
-
-    types.forEach(type => {
-      const opt = document.createElement("option");
-      opt.value = type;
-      let label = "";
-      if (type === "narukvica") label = "Narukvice";
-      else if (type === "ogrlica") label = "Ogrlice";
-      else if (type === "mindjuse") label = "Minđuše";
-      else if (type === "set") label = "Setovi";
-      else label = type;
-      opt.textContent = label;
-      filterType.appendChild(opt);
-    });
+    const keepFirst = filterStone.options[0];
+    filterStone.innerHTML = "";
+    filterStone.appendChild(keepFirst);
 
     stones.forEach(stone => {
       const opt = document.createElement("option");
@@ -621,18 +334,39 @@
     });
   }
 
+  function applyFilters() {
+    let filtered = [...allProducts];
+
+    if (activeType) filtered = filtered.filter(p => p.type === activeType);
+
+    const stoneValue = filterStone.value;
+    if (stoneValue) filtered = filtered.filter(p => p.stone === stoneValue);
+
+    const priceValue = filterPrice.value;
+    if (priceValue === "1") filtered = filtered.filter(p => p.price <= 2000);
+    else if (priceValue === "2") filtered = filtered.filter(p => p.price > 2000 && p.price <= 3000);
+    else if (priceValue === "3") filtered = filtered.filter(p => p.price > 3000);
+
+    setActiveTab(activeType);
+    renderProducts(filtered);
+  }
+
   fetch("products.json")
-    .then(response => {
-      if (!response.ok) throw new Error("Ne mogu da učitam products.json");
-      return response.json();
+    .then(r => {
+      if (!r.ok) throw new Error("Ne mogu da učitam products.json");
+      return r.json();
     })
     .then(products => {
       allProducts = products || [];
-      productsGrid.innerHTML = "";
-      populateFilterOptions(allProducts);
-      renderProducts(allProducts);
 
-      filterType.addEventListener("change", applyFilters);
+      activeType = "";
+      setActiveTab(activeType);
+
+      populateStoneOptions(allProducts);
+
+      // inicijalni prikaz: sve
+      applyFilters();
+
       filterStone.addEventListener("change", applyFilters);
       filterPrice.addEventListener("change", applyFilters);
     })
